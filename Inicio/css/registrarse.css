@@ -1,0 +1,126 @@
+:root {
+    --primary-font: 'Inter', sans-serif;
+    --title-font: 'Cousine', monospace;
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --muted-color: #888888;
+    --border-color: #cccccc;
+    --button-bg: #EFE6FD;
+    --button-text: #5E546D;
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-family: var(--title-font);
+    font-size: 3rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    /* Monospace usually looks bold enough */
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-family: var(--title-font);
+    color: var(--muted-color);
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.subtitle a {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background-color: #333;
+    margin: 2rem auto;
+    width: 80%;
+}
+
+form {
+    text-align: left;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--title-font);
+    /* Placeholder looks mono in image */
+    font-size: 1rem;
+    color: var(--text-color);
+    box-sizing: border-box;
+    /* Important for padding */
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+input:focus {
+    outline: none;
+    border-color: #999;
+}
+
+.btn-register {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 8px;
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+}
+
+.btn-register:hover {
+    background-color: #e5d9f8;
+}
