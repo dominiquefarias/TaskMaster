@@ -10,8 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     if (empty($username) || empty($email) || empty($password)) {
-        $error = "Por favor, completa todos los campos.";
-    } else {
+        $error = "Completa todos los campos";
+    }
+    else {
         $stmt = $conn->prepare("SELECT id, nombre_usuario, password FROM usuarios WHERE nombre_usuario = ? AND email = ?");
         $stmt->bind_param("ss", $username, $email);
         $stmt->execute();
@@ -27,10 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 header("Location: ../index.php");
                 exit();
-            } else {
+            }
+            else {
                 $error = "Contraseña incorrecta";
             }
-        } else {
+        }
+        else {
             $error = "Usuario o email no encontrados";
         }
         $stmt->close();
@@ -59,10 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <hr class="divider">
 
         <?php if (!empty($error)): ?>
-            <div style="color: red; margin-bottom: 1rem; font-family: var(--primary-font); text-align: center;">
-                <?php echo $error; ?>
-            </div>
-        <?php endif; ?>
+        <div style="color: red; margin-bottom: 1rem; font-family: var(--primary-font); text-align: center;">
+            <?php echo $error; ?>
+        </div>
+        <?php
+endif; ?>
 
         <form action="" method="post">
             <div class="form-group">
