@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     if (empty($username) || empty($email) || empty($password)) {
-        $error = "Por favor, completa todos los campos.";
+        $error = "Completa todos los campos";
     }
     else {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
