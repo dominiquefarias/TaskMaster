@@ -1,6 +1,5 @@
 <?php
 include 'conexion.php';
-// Creo un 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username'] ?? '');
     $email = trim($_POST['email'] ?? '');
