@@ -7,7 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'] ?? '';
     if (empty($username) || empty($email) || empty($password)) {
         $error = "Por favor, completa todos los campos.";
-    } else {
+    }
+    else {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $conn->prepare("INSERT INTO usuarios (nombre_usuario, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $password_hash);
@@ -16,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user_id'] = $conn->insert_id;
         $_SESSION['username'] = $username;
 
-        header("Location: success.php");
+        header("Location: ../Pantalla principal/pagina_principal.php");
         exit;
 
     }
@@ -45,10 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <hr class="divider">
 
         <?php if (!empty($error)): ?>
-            <p style="color: red; text-align: center;">
-                <?php echo $error; ?>
-            </p>
-        <?php endif; ?>
+        <p style="color: red; text-align: center;">
+            <?php echo $error; ?>
+        </p>
+        <?php
+endif; ?>
 
         <form action="" method="post">
             <div class="form-group">
@@ -66,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
             </div>
 
-            <button type="submit" class="btn-register">REGISTRASE</button>
+            <button type="submit" class="btn-register">REGISTRARSE</button>
         </form>
     </div>
 </body>

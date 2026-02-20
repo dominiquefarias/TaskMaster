@@ -9,12 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validar que los campos no estén vacíos
     if (empty($username) || empty($email) || empty($password)) {
         $error = "Por favor, completa todos los campos.";
     } else {
-        // Prepara la consulta para evitar inyección SQL
-        // Buscamos por nombre de usuario Y email, según el formulario
         $stmt = $conn->prepare("SELECT id, nombre_usuario, password FROM usuarios WHERE nombre_usuario = ? AND email = ?");
         $stmt->bind_param("ss", $username, $email);
         $stmt->execute();
@@ -25,13 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->fetch();
 
             if (password_verify($password, $db_password_hash)) {
-                // Contraseña correcta, iniciar sesión
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $db_username;
 
-                // REDIRECCIÓN REAL:
                 header("Location: ../index.php");
-                exit(); // Es vital poner exit() después de un header para detener el script
+                exit();
             } else {
                 $error = "Contraseña incorrecta";
             }
