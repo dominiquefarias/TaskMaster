@@ -1,0 +1,264 @@
+:root {
+    --primary-font: 'Inter', sans-serif;
+    --mono-font: 'Cousine', monospace;
+    --bg-app: #E6E0F8;
+    /* Light Lavender Background */
+    --bg-sidebar: #D0C0E8;
+    /* Sidebar Color */
+    --bg-card: #CDC1E8;
+    /* Card Color */
+    --text-color: #333;
+    --neon-purple: #8A2BE2;
+    /* Neon Border Color */
+    --clock-bg: #2D2345;
+    /* Dark background for clock */
+    --clock-text: #FFFFFF;
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: var(--bg-app);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 80px;
+    background-color: var(--bg-sidebar);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width calculation */
+}
+
+.sidebar-icon {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    color: #FFF;
+    /* White icons or light purple */
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.sidebar-icon:hover {
+    opacity: 1;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+/* --- TOP HEADER --- */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: #9370DB;
+    /* Medium Purple for button */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px 25px 0 0;
+    /* Match dropdown radius */
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--primary-font);
+    /* Ensure aesthetic font */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #9370DB;
+    min-width: 220px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    border-radius: 0 0 25px 25px;
+    /* Softer rounded bottom */
+    padding: 10px;
+    top: 100%;
+    /* Ensure it starts right below the button */
+    left: 0;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    /* Rounded items */
+    margin-bottom: 5px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+/* Remove border-bottom from last-child since we use rounded items now */
+.dropdown-content a:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Semi-transparent white */
+    transform: translateX(5px);
+    /* Slight movement effect */
+}
+
+.dropdown-container:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-container:hover .dropdown-btn {
+    border-radius: 25px 25px 0 0;
+    /* Keep top rounded when open */
+    background-color: #8A2BE2;
+    /* Slightly darker when open */
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* --- CARDS --- */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border-radius: 40px;
+    /* Requested 40px border radius */
+    padding: 1.5rem 2rem;
+    /* Adjusted padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Center vertically */
+    transition: transform 0.2s;
+    position: relative;
+    min-height: 100px;
+}
+
+/* Special Neon Border Class */
+.card-neon {
+    border: 3px solid var(--neon-purple);
+    /* Neon border */
+    box-shadow: 0 0 15px var(--neon-purple);
+    /* Neon glow */
+}
+
+.card-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.card-info p {
+    margin: 0;
+    color: #555;
+    font-size: 0.9rem;
+    max-width: 600px;
+}
+
+/* --- DIGITAL CLOCK BADGE --- */
+.clock-badge {
+    background-color: var(--clock-bg);
+    color: var(--clock-text);
+    padding: 0.5rem 1rem;
+    /* Slightly larger padding */
+    border-radius: 20px;
+    /* Distinct badge shape */
+    font-family: var(--mono-font);
+    font-size: 1.5rem;
+    /* Larger font size */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 2px solid white;
+    /* Optional: border to make it pop */
+}
+
+.clock-number {
+    background-color: #eee;
+    color: #333;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+.clock-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 2rem;
+}
+
+.action-icons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    color: #FFF;
+    opacity: 0.6;
+}
+
+/* Hamburger Menu Icon (CSS only for simplicity) */
+.menu-icon div {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    border-radius: 5px;
+}
