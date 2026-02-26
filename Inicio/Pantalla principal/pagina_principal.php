@@ -179,7 +179,7 @@ endif; ?>
 else: ?>
             <div style="text-align: center; color: #555; margin-top: 2rem;">
                 <h3>No tienes tareas pendientes</h3>
-                <p>Usa el botón + para añadir una nueva</p>
+                <p>Usa el botón + para añadir una nueva asignatura</p>
             </div>
             <?php
 endif; ?>

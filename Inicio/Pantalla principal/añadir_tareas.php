@@ -129,7 +129,7 @@ endforeach; ?>
                 </div>
             </div>
 
-            <!-- Botón Guardar -->
+            <!-- Botón para guardar -->
             <button type="submit" class="btn-save">
                 Guardar Tarea <i class="fas fa-sparkles"></i>
             </button>

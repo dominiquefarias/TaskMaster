@@ -81,7 +81,7 @@ endif; ?>
                 <input type="text" name="nombre" class="form-control" placeholder="Ej: Matemáticas" required autofocus>
             </div>
 
-            <!-- Botón para Guardar -->
+            <!-- Botón para Guardar la asignatura -->
             <button type="submit" class="btn-save">
                 Guardar <i class="fas fa-check"></i>
             </button>

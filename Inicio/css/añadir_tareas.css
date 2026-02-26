@@ -113,7 +113,7 @@ textarea.form-control {
     opacity: 1;
 }
 
-/* Active state for radio */
+/* Activde state for radio */
 input[type="radio"] {
     display: none;
 }
