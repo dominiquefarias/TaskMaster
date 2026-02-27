@@ -53,9 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Asignatura - TaskMaster</title>
+    <title>Añadir Asignatura - Get it done</title>
     <link rel="stylesheet" href="../css/añadir_asignatura.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>

@@ -48,9 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Nueva Tarea - TaskMaster</title>
+    <title>Añadir Nueva Tarea - Get it done</title>
     <link rel="stylesheet" href="../css/añadir_tareas.css">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../img/favicon.png">
 </head>
@@ -134,7 +133,7 @@ endforeach; ?>
                 Guardar Tarea <i class="fas fa-sparkles"></i>
             </button>
 
-            <!-- Back link just in case -->
+            <!-- retroceso -->
             <div style="text-align: center; margin-top: 1rem;">
                 <a href="pagina_principal.php"
                     style="color: #666; text-decoration: none; font-size: 0.9rem;">Cancelar</a>
