@@ -79,7 +79,7 @@ function tiempoRestante($fecha_limite)
 
     <aside class="sidebar">
         <div class="sidebar-icon menu-icon">
-            <i class="fas fa-bars" style="color: #000;"></i>
+            <i class="fas fa-bars menu-icon-bars"></i>
         </div>
 
         <div class="sidebar-icon">
@@ -100,10 +100,16 @@ function tiempoRestante($fecha_limite)
                 <div class="dropdown-content">
                     <?php if (count($asignaturas) > 0): ?>
                     <?php foreach ($asignaturas as $asig): ?>
-                    <a href="#">
-                        <?php echo htmlspecialchars($asig['nombre']); ?>
-                        <i class="fas fa-trash-alt" style="float:right"></i>
-                    </a>
+                    <div class="subject-item-container">
+                        <a href="#" class="subject-item-link">
+                            <?php echo htmlspecialchars($asig['nombre']); ?>
+                        </a>
+                        <a href="eliminar_asignatura.php?id=<?php echo $asig['id']; ?>"
+                            onclick="return confirm('¿Seguro que quieres eliminar esta asignatura?');"
+                            class="subject-item-delete" title="Eliminar asignatura">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
                     <?php
     endforeach; ?>
                     <?php
@@ -112,8 +118,7 @@ else: ?>
                     <?php
 endif; ?>
 
-                    <div
-                        style="padding: 10px; display: flex; justify-content: center; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <div class="add-subject-wrapper">
                         <a href="añadir_asignatura.php" class="add-subject-btn" title="Añadir Asignatura">
                             <i class="fas fa-plus"></i>
                         </a>
@@ -122,9 +127,8 @@ endif; ?>
             </div>
 
             <div class="header-actions">
-                <a href="añadir_tareas.php" class="btn-icon" style="text-decoration: none;">
-                    <i class="fas fa-plus-circle"
-                        style="color: #9370DB; font-size: 3rem; background: white; border-radius: 50%;"></i>
+                <a href="añadir_tareas.php" class="btn-icon btn-add-task-link">
+                    <i class="fas fa-plus-circle btn-add-subject"></i>
                 </a>
                 <a href="../Inicio de sesion/logout.php" class="btn-icon">
                     <i class="fas fa-sign-out-alt"></i>
@@ -147,7 +151,7 @@ endif; ?>
                     <p>
                         <?php echo htmlspecialchars($tarea['descripcion']); ?>
                     </p>
-                    <small style="color: #666; margin-top:5px; display:block;">
+                    <small class="task-subject-name">
                         <?php echo htmlspecialchars($tarea['asignatura_nombre']); ?>
                     </small>
                 </div>
@@ -177,7 +181,7 @@ endif; ?>
     endforeach; ?>
             <?php
 else: ?>
-            <div style="text-align: center; color: #555; margin-top: 2rem;">
+            <div class="no-tasks-msg">
                 <h3>No tienes tareas pendientes</h3>
                 <p>Usa el botón + para añadir una nueva asignatura</p>
             </div>
