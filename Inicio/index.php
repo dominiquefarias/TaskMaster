@@ -3,11 +3,12 @@ session_start();
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['user_id'])) {
-    header("Location: Inicio de sesion/login.php");
+    header("Location: Inicio%20de%20sesion/login.php");
     exit;
-} else {
+}
+else {
     // Si ya inició sesión, redirigir al Dashboard
-    header("Location: Pantalla principal/pagina_principal.php");
+    header("Location: Pantalla%20principal/pagina_principal.php");
     exit;
 }
 ?>

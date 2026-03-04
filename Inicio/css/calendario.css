@@ -1,0 +1,695 @@
+:root {
+    --bg-main: #13111C;
+    /* Darkest background */
+    --bg-panel: #1A1625;
+    /* Slightly lighter panel background, e.g. sidebar */
+    --bg-card: #221D32;
+    /* Lighter panel background, e.g. focus timer, info cards */
+    --bg-calendar-grid: #13111C;
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #8E8B99;
+    /* Grey text for dates out of month, subtitles */
+    --text-muted: #6B6875;
+
+    --accent-purple: #9D50FF;
+    /* Primary brand color */
+    --accent-purple-hover: #b070ff;
+    --accent-purple-light: rgba(157, 80, 255, 0.15);
+    /* For subtle backgrounds */
+
+    --color-exam: #2D2345;
+    /* Dark purple block */
+    --color-class: #2D2345;
+    --color-deadline: #2D2345;
+
+    /* Status dot colors */
+    --dot-red: #FF4D4D;
+    --dot-orange: #FFA500;
+    --dot-green: #00CC66;
+
+    /* Borders */
+    --border-color: rgba(255, 255, 255, 0.05);
+
+    --font-main: 'Inter', sans-serif;
+    --font-mono: 'Cousine', monospace;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-card);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* =========================================
+   LAYOUT BLOCKS
+   ========================================= */
+.sidebar-left {
+    width: 240px;
+    background-color: var(--bg-panel);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 32px;
+    overflow-y: auto;
+}
+
+.sidebar-right {
+    width: 320px;
+    background-color: var(--bg-panel);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-left: 1px solid var(--border-color);
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+/* =========================================
+   LEFT SIDEBAR
+   ========================================= */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding: 0 8px;
+}
+
+.brand-icon {
+    width: 36px;
+    height: 36px;
+    background-color: var(--accent-purple);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.brand-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-purple);
+    letter-spacing: 0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background-color: var(--accent-purple-light);
+    color: var(--accent-purple);
+}
+
+.nav-item i {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+.quick-add-btn {
+    background-color: var(--accent-purple);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 24px;
+    text-decoration: none;
+}
+
+.quick-add-btn:hover {
+    background-color: var(--accent-purple-hover);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 8px;
+    margin-top: auto;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #E6E0F8;
+    /* Light placeholder */
+    color: #13111C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+}
+
+.user-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.user-settings {
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.user-settings:hover {
+    color: var(--text-primary);
+}
+
+/* =========================================
+   HEADER (MAIN CONTENT)
+   ========================================= */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.search-bar {
+    position: relative;
+    width: 400px;
+}
+
+.search-bar i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-bar input {
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 12px 16px 12px 40px;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: var(--font-main);
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+}
+
+.search-bar input::placeholder {
+    color: var(--text-secondary);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.notification-bell {
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.notification-bell:hover {
+    color: var(--text-primary);
+}
+
+.notification-dot {
+    position: absolute;
+    top: 0;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--dot-red);
+    border-radius: 50%;
+}
+
+.current-date-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* =========================================
+   CALENDAR HEADER & TITLE
+   ========================================= */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+.calendar-title h1 {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+    font-weight: 700;
+}
+
+.calendar-title p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 14px;
+}
+
+.calendar-view-toggles {
+    display: flex;
+    background-color: var(--bg-panel);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.view-toggle {
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    transition: all 0.2s;
+}
+
+.view-toggle.active {
+    background-color: var(--accent-purple);
+    color: white;
+}
+
+/* =========================================
+   CALENDAR GRID
+   ========================================= */
+.calendar-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-panel);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.calendar-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.day-name {
+    padding: 16px 0;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+.calendar-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    /* Usually 5 or 6 weeks */
+}
+
+.calendar-cell {
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+}
+
+.calendar-cell:nth-child(7n) {
+    border-right: none;
+}
+
+.cell-date {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calendar-cell.other-month .cell-date {
+    color: var(--text-muted);
+}
+
+.calendar-cell.today .cell-date {
+    color: var(--accent-purple);
+}
+
+.calendar-cell.today .cell-date::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-purple);
+    border: 1px solid var(--bg-panel);
+    /* create gap effect */
+    box-sizing: content-box;
+}
+
+/* Task Blocks in Calendar */
+.task-block {
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    background-color: var(--color-class);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    text-decoration: none;
+    display: block;
+    border-left: 3px solid transparent;
+}
+
+.task-block:hover {
+    opacity: 0.8;
+}
+
+.task-block.type-class {
+    background-color: rgba(157, 80, 255, 0.2);
+    border-left-color: var(--accent-purple);
+}
+
+.task-block.type-deadline {
+    background-color: rgba(255, 165, 0, 0.15);
+    border-left-color: var(--dot-orange);
+}
+
+.task-block.type-exam {
+    background-color: rgba(255, 77, 77, 0.15);
+    border-left-color: var(--dot-red);
+}
+
+/* =========================================
+   RIGHT SIDEBAR
+   ========================================= */
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px 0;
+}
+
+.section-title i {
+    color: var(--accent-purple);
+}
+
+/* Schedule Cards */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.schedule-card {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border-left: 3px solid transparent;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+
+.schedule-card:hover {
+    transform: translateY(-2px);
+}
+
+.schedule-card.class {
+    border-left-color: var(--accent-purple);
+}
+
+.schedule-card.deadline {
+    border-left-color: var(--dot-orange);
+}
+
+.schedule-card.exam {
+    border-left-color: var(--dot-red);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.card-type {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.schedule-card.class .card-type {
+    color: var(--accent-purple);
+}
+
+.schedule-card.deadline .card-type {
+    color: var(--dot-orange);
+}
+
+.schedule-card.exam .card-type {
+    color: var(--dot-red);
+}
+
+.card-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+}
+
+.card-meta {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Focus Timer */
+.focus-timer {
+    background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
+}
+
+.timer-subtitle {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 8px 0;
+}
+
+.timer-time {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    font-family: var(--font-mono);
+    letter-spacing: 2px;
+}
+
+.btn-pomodoro {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: var(--font-main);
+}
+
+.btn-pomodoro:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Upcoming Deadlines List */
+.deadline-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.deadline-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.deadline-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background-color: var(--dot-red);
+}
+
+.dot.purple {
+    background-color: var(--accent-purple);
+}
+
+.dot.green {
+    background-color: var(--dot-green);
+}
+
+.deadline-title {
+    color: var(--text-primary);
+}
+
+.deadline-time {
+    color: var(--text-secondary);
+}
+
+/* Edit/Delete Overlay in Calendar Cells (Optional hover state) */
+.calendar-cell-actions {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: none;
+    gap: 4px;
+}
+
+.calendar-cell:hover .calendar-cell-actions {
+    display: flex;
+}
+
+.cell-action-btn {
+    background: var(--bg-card);
+    border: none;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    padding: 4px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.cell-action-btn:hover {
+    color: var(--text-primary);
+    background: var(--accent-purple);
+}

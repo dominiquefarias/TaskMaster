@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user_id'] = $conn->insert_id;
         $_SESSION['username'] = $username;
 
-        header("Location: ../Pantalla principal/pagina_principal.php");
+        header("Location: ../Pantalla%20principal/pagina_principal.php");
         exit;
 
     }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cousine&family=Inter:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="../img/favicon.png?v=<?php echo time(); ?>">
 </head>
 
 <body>

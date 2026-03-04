@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!($_SESSION['user_id'] ?? null)) {
-    header("Location: ../Inicio de sesion/login.php");
+    header("Location: ../Inicio%20de%20sesion/login.php");
     exit;
 }
 require_once '../Inicio de sesion/conexion.php';
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Añadir Nueva Tarea - Get it done</title>
     <link rel="stylesheet" href="../css/añadir_tareas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="../img/favicon.png?v=<?php echo time(); ?>">
 </head>
 
 <body>

@@ -3,7 +3,7 @@ session_start();
 
 // Verificar sesión de si ha 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Inicio de sesion/login.php");
+    header("Location: ../Inicio%20de%20sesion/login.php");
     exit;
 }
 
@@ -56,7 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Añadir Asignatura - Get it done</title>
     <link rel="stylesheet" href="../css/añadir_asignatura.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="../img/favicon.png?v=<?php echo time(); ?>">
+
 </head>
 
 <body>

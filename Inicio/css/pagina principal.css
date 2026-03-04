@@ -7,8 +7,8 @@
     /* Sidebar Color */
     --bg-card: #CDC1E8;
     /* Card Color */
-    --text-color: #333;
-    --neon-purple: #8A2BE2;
+    --text-color: #1A1A24;
+    --neon-purple: #9D50FF;
     /* Neon Border Color */
     --clock-bg: #2D2345;
     /* Dark background for clock */
@@ -74,7 +74,7 @@ body {
 }
 
 .dropdown-btn {
-    background-color: #9370DB;
+    background-color: #9D50FF;
     /* Medium Purple for button */
     color: white;
     padding: 0.8rem 1.5rem;
@@ -94,7 +94,7 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #9370DB;
+    background-color: #9D50FF;
     min-width: 220px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
     z-index: 100;
@@ -151,7 +151,7 @@ body {
 .dropdown-container:hover .dropdown-btn {
     border-radius: 25px 25px 0 0;
     /* Keep top rounded when open */
-    background-color: #8A2BE2;
+    background-color: #9D50FF;
     /* Slightly darker when open */
 }
 
@@ -166,7 +166,7 @@ body {
     border: none;
     cursor: pointer;
     font-size: 2rem;
-    color: #333;
+    color: #1A1A24;
 }
 
 /* --- CARDS --- */
@@ -202,7 +202,7 @@ body {
 .card-info h3 {
     margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
-    color: #000;
+    color: #1A1A24;
 }
 
 .card-info p {
@@ -233,7 +233,7 @@ body {
 
 .clock-number {
     background-color: #eee;
-    color: #333;
+    color: #1A1A24;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
 }
@@ -248,24 +248,61 @@ body {
 
 .action-icons {
     display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn.edit-btn {
+    color: #9D50FF;
+    /* Matches the theme purple */
+}
+
+.action-btn.edit-btn:hover {
+    background-color: #9D50FF;
     color: #FFF;
-    opacity: 0.6;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(157, 80, 255, 0.4);
+}
+
+.action-btn.delete-btn {
+    color: #e74c3c;
+    /* A soft bright red */
+}
+
+.action-btn.delete-btn:hover {
+    background-color: #e74c3c;
+    color: #FFF;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(231, 76, 60, 0.3);
 }
 
 /* Hamburger Menu Icon (CSS only for simplicity) */
 .menu-icon div {
     width: 35px;
     height: 5px;
-    background-color: #333;
+    background-color: #1A1A24;
     margin: 6px 0;
     border-radius: 5px;
 }
 
 /* --- EXTRACTED INLINE STYLES --- */
 .menu-icon-bars {
-    color: #000;
+    color: #1A1A24;
 }
 
 .subject-item-container {
@@ -296,7 +333,7 @@ body {
 }
 
 .btn-add-subject {
-    color: #9370DB;
+    color: #9D50FF;
     font-size: 3rem;
     background: white;
     border-radius: 50%;
