@@ -198,7 +198,7 @@ for ($dia = 1; $dia < 31; $dia++) {
     }
 
     echo "<div class='calendar-cell-actions'>
-            <button class='cell-action-btn' title='Add task on this day'><i class='fas fa-plus'></i></button>
+            <button type='button' class='cell-action-btn' title='Add task on this day' onclick=\"window.location.href='añadir_tareas.php'\"><i class='fas fa-plus'></i></button>
           </div>";
 
     echo "</div>";
