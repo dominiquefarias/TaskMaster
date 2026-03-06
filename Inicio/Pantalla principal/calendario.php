@@ -148,9 +148,9 @@ $user_initials = getInitials($user_name);
 
         <div class="calendar-header">
             <div class="calendar-title">
-                <h1>Academic Calendar</h1>
-                <p>Stay ahead of your
-                    <?php echo count($tareas); ?> upcoming deadlines.
+                <h1>Calendario academico</h1>
+                <p>Mantente un paso adelante de tus
+                    <?php echo count($tareas); ?> entregas
                 </p>
             </div>
             <div class="calendar-view-toggles">
