@@ -108,6 +108,7 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Tarea - Get it done</title>
     <link rel="stylesheet" href="../css/añadir_tareas.css">
+    <link rel="stylesheet" href="../css/editar_tarea.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../img/favicon.png?v=<?php echo time(); ?>">
 </head>
@@ -120,7 +121,7 @@ else {
         </div>
 
         <?php if ($message): ?>
-        <p style="color: red; text-align: center;">
+        <p class="message-error">
             <?php echo htmlspecialchars($message); ?>
         </p>
         <?php
@@ -144,8 +145,8 @@ endif; ?>
                     <select name="asignatura_id" class="form-control" required>
                         <option value="" disabled>Selecciona una...</option>
                         <?php foreach ($asignaturas as $asig): ?>
-                        <option value="<?php echo $asig['id']; ?>" <?php echo ($tarea['asignatura_id'] == $asig['id'])
-        ? 'selected' : ''; ?>>
+                        <option value="<?php echo $asig['id']; ?>" <?php echo ($tarea['asignatura_id']==$asig['id'])
+                            ? 'selected' : '' ; ?>>
                             <?php echo htmlspecialchars($asig['nombre']); ?>
                         </option>
                         <?php
@@ -178,20 +179,20 @@ $fecha_formato = date('Y-m-d\TH:i', strtotime($tarea['fecha_limite']));
                 <div class="urgency-options">
 
                     <label>
-                        <input type="radio" name="prioridad" value="alta" <?php echo ($tarea['prioridad'] === 'alta')
-    ? 'checked' : ''; ?>>
+                        <input type="radio" name="prioridad" value="alta" <?php echo ($tarea['prioridad']==='alta' )
+                            ? 'checked' : '' ; ?>>
                         <div class="urgency-btn btn-high">Alta</div>
                     </label>
 
                     <label>
-                        <input type="radio" name="prioridad" value="media" <?php echo ($tarea['prioridad'] === 'media')
-    ? 'checked' : ''; ?>>
+                        <input type="radio" name="prioridad" value="media" <?php echo ($tarea['prioridad']==='media' )
+                            ? 'checked' : '' ; ?>>
                         <div class="urgency-btn btn-med">Media</div>
                     </label>
 
                     <label>
-                        <input type="radio" name="prioridad" value="baja" <?php echo ($tarea['prioridad'] === 'baja')
-    ? 'checked' : ''; ?>>
+                        <input type="radio" name="prioridad" value="baja" <?php echo ($tarea['prioridad']==='baja' )
+                            ? 'checked' : '' ; ?>>
                         <div class="urgency-btn btn-low">Baja</div>
                     </label>
 
@@ -200,13 +201,12 @@ $fecha_formato = date('Y-m-d\TH:i', strtotime($tarea['fecha_limite']));
 
             <!-- Botón para guardar -->
             <button type="submit" class="btn-save">
-                Actualizar Tarea <i class="fas fa-save"></i>
+                Actualizar Tarea
             </button>
 
             <!-- retroceso -->
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="pagina_principal.php"
-                    style="color: #666; text-decoration: none; font-size: 0.9rem;">Cancelar</a>
+            <div class="cancel-action-container">
+                <a href="pagina_principal.php" class="cancel-action-link">Cancelar</a>
             </div>
 
         </form>

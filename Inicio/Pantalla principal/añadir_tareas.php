@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sql = "INSERT INTO tareas (asignatura_id, nombre, descripcion, fecha_limite, prioridad) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
-        // Usamos bind_param para máxima compatibilidad
         $stmt->bind_param("issss", $a_id, $n, $desc, $f, $prio);
 
         if ($stmt->execute()) {
@@ -62,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
 
         <?php if ($message): ?>
-        <p style="color: red; text-align: center;">
+        <p class="error-message">
             <?php echo htmlspecialchars($message); ?>
         </p>
         <?php
@@ -70,7 +69,6 @@ endif; ?>
 
         <form action="añadir_tareas.php" method="POST">
 
-            <!-- Nombre de la tarea -->
             <div class="form-group">
                 <label class="form-label">¿Qué tienes pendiente?</label>
                 <input type="text" name="nombre" class="form-control"
@@ -92,20 +90,17 @@ endforeach; ?>
                     </select>
                 </div>
 
-                <!-- Fecha y Hora -->
                 <div class="form-col-half">
                     <label class="form-label">¿Para cuándo?</label>
                     <input type="datetime-local" name="fecha_limite" class="form-control" required>
                 </div>
             </div>
 
-            <!-- Descripción / Notas -->
             <div class="form-group">
                 <label class="form-label">Comentarios</label>
                 <textarea name="descripcion" class="form-control" placeholder="Comentarios..."></textarea>
             </div>
 
-            <!-- Prioridad -->
             <div class="form-group">
                 <label class="form-label">Nivel de relevancia</label>
                 <div class="urgency-options">
@@ -128,15 +123,12 @@ endforeach; ?>
                 </div>
             </div>
 
-            <!-- Botón para guardar -->
             <button type="submit" class="btn-save">
                 Guardar Tarea <i class="fas fa-sparkles"></i>
             </button>
 
-            <!-- retroceso -->
-            <div style="text-align: center; margin-top: 1rem;">
-                <a href="pagina_principal.php"
-                    style="color: #666; text-decoration: none; font-size: 0.9rem;">Cancelar</a>
+            <div class="cancel-container">
+                <a href="pagina_principal.php" class="cancel-link">Cancelar</a>
             </div>
 
         </form>

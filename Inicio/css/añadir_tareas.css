@@ -169,3 +169,22 @@ input[type="datetime-local"] {
     color: #555;
     font-family: 'Quicksand', sans-serif;
 }
+
+/* Error Message */
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+/* Cancel Container */
+.cancel-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Cancel Link */
+.cancel-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}

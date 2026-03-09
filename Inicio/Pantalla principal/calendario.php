@@ -191,7 +191,7 @@ for ($dia = 1; $dia < 31; $dia++) {
                 $typeClass = 'type-deadline';
             }
 
-            echo "<a href='editar_tarea.php?id={$tarea_del_dia['id']}' class='task-block $typeClass' title='{$nombre_tarea}\nAsignatura: {$tarea_del_dia['asignatura_nombre']}'>";
+            echo "<a href='../Pantalla%20trasera/editar_tarea.php?id={$tarea_del_dia['id']}' class='task-block $typeClass' title='{$nombre_tarea}\nAsignatura: {$tarea_del_dia['asignatura_nombre']}'>";
             echo "$nombre_tarea";
             echo "</a>";
         }
