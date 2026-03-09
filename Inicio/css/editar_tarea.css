@@ -20,3 +20,18 @@
     color: #333;
     text-decoration: underline;
 }
+
+/* Extracted from inline styles */
+.lang-selector-wrapper {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#lang_selector {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: var(--primary-font, sans-serif);
+    cursor: pointer;
+}

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once '../idiomas.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Inicio de sesion/login.php");
@@ -114,7 +117,9 @@ $user_initials = getInitials($user_name);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Calendar</title>
+    <title>
+        <?php echo $idioma[$_SESSION['idioma']]['calendar_title']; ?>
+    </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cousine&family=Inter:wght@400;500;600;700&display=swap"
@@ -130,12 +135,10 @@ $user_initials = getInitials($user_name);
             <i class="fas fa-bars menu-icon-bars"></i>
         </div>
 
-        <a href="pagina_principal.php" class="sidebar-icon" title="Inicio"
-            style="text-decoration: none; display: flex; justify-content: center;">
+        <a href="pagina_principal.php" class="sidebar-icon" title="Inicio">
             <i class="fas fa-home"></i>
         </a>
-        <a href="calendario.php" class="sidebar-icon" title="Calendario"
-            style="text-decoration: none; display: flex; justify-content: center;">
+        <a href="calendario.php" class="sidebar-icon" title="Calendario">
             <i class="fa-solid fa-calendar"></i>
         </a>
         <div class="sidebar-icon">
@@ -148,28 +151,54 @@ $user_initials = getInitials($user_name);
 
         <div class="calendar-header">
             <div class="calendar-title">
-                <h1>Calendario academico</h1>
-                <p>Mantente un paso adelante de tus
-                    <?php echo count($tareas); ?> entregas
+                <div class="lang-selector-wrapper">
+                    <select id="lang_selector">
+                        <option value="es" <?php if ($_SESSION['idioma'] == 'es') echo 'selected'; ?>>🇪🇸
+                        </option>
+                        <option value="en" <?php if ($_SESSION['idioma'] == 'en') echo 'selected'; ?>>🇬🇧
+                        </option>
+                    </select>
+                </div>
+                <script>
+                    document.getElementById('lang_selector').onchange = function () {
+                        window.location.href = '?idioma=' + this.value;
+                    };
+                </script>
+                <h1>
+                    <?php echo $idioma[$_SESSION['idioma']]['calendar_title']; ?>
+                </h1>
+                <p>
+                    <?php echo $idioma[$_SESSION['idioma']]['stay_ahead']; ?>
+                    <?php echo count($tareas); ?>
+                    <?php echo $idioma[$_SESSION['idioma']]['deliveries']; ?>
                 </p>
-            </div>
-            <div class="calendar-view-toggles">
-                <button class="view-toggle active">Month</button>
-                <button class="view-toggle">Week</button>
-                <button class="view-toggle">Day</button>
             </div>
         </div>
 
         <!-- CALENDAR GRID -->
         <div class="calendar-container">
             <div class="calendar-days-header">
-                <div class="day-name">SUN</div>
-                <div class="day-name">MON</div>
-                <div class="day-name">TUE</div>
-                <div class="day-name">WED</div>
-                <div class="day-name">THU</div>
-                <div class="day-name">FRI</div>
-                <div class="day-name">SAT</div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['sun']; ?>
+                </div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['mon']; ?>
+                </div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['tue']; ?>
+                </div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['wed']; ?>
+                </div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['thu']; ?>
+                </div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['fri']; ?>
+                </div>
+                <div class="day-name">
+                    <?php echo $idioma[$_SESSION['idioma']]['sat']; ?>
+                </div>
             </div>
 
             <div class="calendar-grid">
@@ -197,8 +226,9 @@ for ($dia = 1; $dia < 31; $dia++) {
         }
     }
 
+    $add_title = $idioma[$_SESSION['idioma']]['add_task_calendar_title'];
     echo "<div class='calendar-cell-actions'>
-            <button type='button' class='cell-action-btn' title='Add task on this day' onclick=\"window.location.href='añadir_tareas.php'\"><i class='fas fa-plus'></i></button>
+            <button type='button' class='cell-action-btn' title='{$add_title}' onclick=\"window.location.href='añadir_tareas.php'\"><i class='fas fa-plus'></i></button>
           </div>";
 
     echo "</div>";
@@ -209,9 +239,12 @@ for ($dia = 1; $dia < 31; $dia++) {
             <!-- Calendar Navigation footer -->
             <div class="calendar-nav-footer">
                 <a href="?month=<?php echo $prevMonth; ?>&year=<?php echo $prevYear; ?>" class="calendar-nav-link"><i
-                        class="fas fa-chevron-left"></i> Previous Month</a>
-                <a href="?month=<?php echo $nextMonth; ?>&year=<?php echo $nextYear; ?>" class="calendar-nav-link">Next
-                    Month <i class="fas fa-chevron-right"></i></a>
+                        class="fas fa-chevron-left"></i>
+                    <?php echo $idioma[$_SESSION['idioma']]['prev_month']; ?>
+                </a>
+                <a href="?month=<?php echo $nextMonth; ?>&year=<?php echo $nextYear; ?>" class="calendar-nav-link">
+                    <?php echo $idioma[$_SESSION['idioma']]['next_month']; ?> <i class="fas fa-chevron-right"></i>
+                </a>
             </div>
         </div>
     </main>

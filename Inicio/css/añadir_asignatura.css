@@ -169,3 +169,46 @@ input[type="datetime-local"] {
     color: #555;
     font-family: 'Quicksand', sans-serif;
 }
+
+/* Extracted from inline styles */
+.lang-selector-wrapper {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#lang_selector {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: var(--primary-font, sans-serif);
+    cursor: pointer;
+}
+
+.add-task-container {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 2rem;
+    border-radius: 40px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.error-msg {
+    color: #FF6B6B;
+    text-align: center;
+    font-weight: bold;
+}
+
+.back-link-wrapper {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.back-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}

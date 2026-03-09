@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once '../idiomas.php';
 
 // Verificar sesión de si ha 
 if (!isset($_SESSION['user_id'])) {
@@ -24,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $check->store_result();
 
         if ($check->num_rows > 0) {
-            $message = "Esta asignatura ya existe.";
+            $message = $idioma[$_SESSION['idioma']]['subject_exists'];
         }
         else {
             $stmt = $conn->prepare("INSERT INTO asignaturas (usuario_id, nombre) VALUES (?, ?)");
@@ -35,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit;
                 }
                 else {
-                    $message = "Error al guardar la asignatura.";
+                    $message = $idioma[$_SESSION['idioma']]['error_saving_subject'];
                 }
                 $stmt->close();
             }
@@ -43,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $check->close();
     }
     else {
-        $message = "Por favor, escribe un nombre.";
+        $message = $idioma[$_SESSION['idioma']]['please_write_name'];
     }
 }
 ?>
@@ -53,7 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Añadir Asignatura - Get it done</title>
+    <title>
+        <?php echo $idioma[$_SESSION['idioma']]['add_subject_title']; ?> - Get it done
+    </title>
     <link rel="stylesheet" href="../css/añadir_asignatura.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/png" href="../img/favicon.png?v=<?php echo time(); ?>">
@@ -61,14 +66,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-
-    <div class="add-task-container" style="width: 400px; padding: 2rem;">
+    <div class="lang-selector-wrapper">
+        <select id="lang_selector">
+            <option value="es" <?php if ($_SESSION['idioma']=='es' )
+    echo 'selected' ; ?>>🇪🇸 </option>
+            <option value="en" <?php if ($_SESSION['idioma']=='en' )
+    echo 'selected' ; ?>>🇬🇧 </option>
+        </select>
+    </div>
+    <script>
+        document.getElementById('lang_selector').onchange = function () {
+            window.location.href = '?idioma=' + this.value;
+        };
+    </script>
+    <div class="add-task-container">
         <div class="add-task-header">
-            <h2>Nueva Asignatura</h2>
+            <h2>
+                <?php echo $idioma[$_SESSION['idioma']]['add_subject_title']; ?>
+            </h2>
         </div>
 
         <?php if ($message): ?>
-        <p style="color: #FF6B6B; text-align: center; font-weight: bold;">
+        <p class="error-msg">
             <?php echo htmlspecialchars($message); ?>
         </p>
         <?php
@@ -77,19 +96,24 @@ endif; ?>
         <form action="añadir_asignatura.php" method="POST">
 
             <div class="form-group">
-                <label class="form-label">Nombre de la asignatura</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Ej: Matemáticas" required autofocus>
+                <label class="form-label">
+                    <?php echo $idioma[$_SESSION['idioma']]['subject_name_label']; ?>
+                </label>
+                <input type="text" name="nombre" class="form-control"
+                    placeholder="<?php echo $idioma[$_SESSION['idioma']]['subject_name_placeholder']; ?>" required
+                    autofocus>
             </div>
 
             <!-- Botón para Guardar la asignatura -->
             <button type="submit" class="btn-save">
-                Guardar <i class="fas fa-check"></i>
+                <?php echo $idioma[$_SESSION['idioma']]['btn_save']; ?> <i class="fas fa-check"></i>
             </button>
 
             <!-- Link para volver hacia atras -->
-            <div style="text-align: center; margin-top: 1.5rem;">
-                <a href="pagina_principal.php" style="color: #666; text-decoration: none; font-size: 0.9rem;"> Volver al
-                    inicio</a>
+            <div class="back-link-wrapper">
+                <a href="pagina_principal.php" class="back-link">
+                    <?php echo $idioma[$_SESSION['idioma']]['back_home']; ?>
+                </a>
             </div>
 
         </form>

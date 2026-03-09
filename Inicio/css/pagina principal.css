@@ -48,6 +48,9 @@ body {
     /* White icons or light purple */
     opacity: 0.8;
     transition: opacity 0.2s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
 }
 
 .sidebar-icon:hover {
@@ -349,4 +352,15 @@ body {
     text-align: center;
     color: #555;
     margin-top: 2rem;
+}
+
+#lang_selector {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-family: var(--primary-font, sans-serif);
+    cursor: pointer;
+    margin-right: 15px;
+    background-color: var(--secondary-bg, #fff);
+    color: var(--text-color, #333);
 }

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require_once '../idiomas.php';
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Inicio de sesion/login.php");
@@ -84,12 +87,10 @@ function tiempoRestante($fecha_limite)
             <i class="fas fa-bars menu-icon-bars"></i>
         </div>
 
-        <a href="pagina_principal.php" class="sidebar-icon" title="Inicio"
-            style="text-decoration: none; display: flex; justify-content: center;">
+        <a href="pagina_principal.php" class="sidebar-icon" title="Inicio">
             <i class="fas fa-home"></i>
         </a>
-        <a href="calendario.php" class="sidebar-icon" title="Calendario"
-            style="text-decoration: none; display: flex; justify-content: center;">
+        <a href="calendario.php" class="sidebar-icon" title="Calendario">
             <i class="fa-solid fa-calendar"></i>
         </a>
         <div class="sidebar-icon">
@@ -102,7 +103,7 @@ function tiempoRestante($fecha_limite)
         <header class="top-header">
             <div class="dropdown-container">
                 <button class="dropdown-btn">
-                    Asignaturas <i class="fas fa-caret-down"></i>
+                    <?php echo $idioma[$_SESSION['idioma']]['subjects']; ?> <i class="fas fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
                     <?php if (count($asignaturas) > 0): ?>
@@ -112,8 +113,9 @@ function tiempoRestante($fecha_limite)
                             <?php echo htmlspecialchars($asig['nombre']); ?>
                         </a>
                         <a href="../Pantalla%20trasera/eliminar_asignatura.php?id=<?php echo $asig['id']; ?>"
-                            onclick="return confirm('¿Seguro que quieres eliminar esta asignatura?');"
-                            class="subject-item-delete" title="Eliminar asignatura">
+                            onclick="return confirm('<?php echo htmlspecialchars($idioma[$_SESSION['idioma']]['delete_subject_confirm'], ENT_QUOTES); ?>');"
+                            class="subject-item-delete"
+                            title="<?php echo $idioma[$_SESSION['idioma']]['delete_subject_title']; ?>">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
@@ -121,12 +123,15 @@ function tiempoRestante($fecha_limite)
     endforeach; ?>
                     <?php
 else: ?>
-                    <a href="#">Sin asignaturas</a>
+                    <a href="#">
+                        <?php echo $idioma[$_SESSION['idioma']]['no_subjects']; ?>
+                    </a>
                     <?php
 endif; ?>
 
                     <div class="add-subject-wrapper">
-                        <a href="añadir_asignatura.php" class="add-subject-btn" title="Añadir Asignatura">
+                        <a href="añadir_asignatura.php" class="add-subject-btn"
+                            title="<?php echo $idioma[$_SESSION['idioma']]['add_subject_title_icon']; ?>">
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -134,6 +139,17 @@ endif; ?>
             </div>
 
             <div class="header-actions">
+                <select id="lang_selector">
+                    <option value="es" <?php if ($_SESSION['idioma']=='es' )
+    echo 'selected' ; ?>>🇪🇸 </option>
+                    <option value="en" <?php if ($_SESSION['idioma']=='en' )
+    echo 'selected' ; ?>>🇬🇧 </option>
+                </select>
+                <script>
+                    document.getElementById('lang_selector').onchange = function () {
+                        window.location.href = '?idioma=' + this.value;
+                    };
+                </script>
                 <a href="añadir_tareas.php" class="btn-icon btn-add-task-link">
                     <i class="fas fa-plus-circle btn-add-subject"></i>
                 </a>
@@ -179,12 +195,13 @@ endif; ?>
                     </div>
                     <div class="action-icons">
                         <a href="../Pantalla%20trasera/editar_tarea.php?id=<?php echo $tarea['id']; ?>"
-                            class="action-btn" title="Editar tarea" style="color: inherit; text-decoration: none;">
+                            class="action-btn edit-btn"
+                            title="<?php echo $idioma[$_SESSION['idioma']]['edit_task_title_icon']; ?>">
                             <i class="fas fa-pen"></i>
                         </a>
                         <a href="../Pantalla%20trasera/eliminar_tarea.php?id=<?php echo $tarea['id']; ?>"
-                            class="action-btn" title="Eliminar tarea" style="color: inherit; text-decoration: none;"
-                            onclick="return confirm('¿Seguro que deseas eliminar esta tarea?');">
+                            class="action-btn delete-btn" title="<?php echo $idioma[$_SESSION['idioma']]['delete_task_title']; ?>"
+                            onclick="return confirm('<?php echo htmlspecialchars($idioma[$_SESSION['idioma']]['delete_task_confirm'], ENT_QUOTES); ?>');">
                             <i class="fas fa-trash"></i>
                         </a>
                     </div>
@@ -196,8 +213,12 @@ endif; ?>
             <?php
 else: ?>
             <div class="no-tasks-msg">
-                <h3>No tienes tareas pendientes</h3>
-                <p>Usa el botón + para añadir una nueva asignatura</p>
+                <h3>
+                    <?php echo $idioma[$_SESSION['idioma']]['no_tasks']; ?>
+                </h3>
+                <p>
+                    <?php echo $idioma[$_SESSION['idioma']]['use_plus_button']; ?>
+                </p>
             </div>
             <?php
 endif; ?>
