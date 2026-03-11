@@ -53,8 +53,8 @@ El código está organizado de forma modular para facilitar el mantenimiento:
 
 ## ⚙️ Instalación y Configuración
 
-1.  **Base de Datos**: Importa el archivo `/database/db.sql` en tu servidor MySQL. Este creará la base de datos `task_master` y el usuario `Dominique`.
-2.  **Servidor Web**: Aloja la carpeta del proyecto en tu servidor local (ej. `/var/www/html/` en Ubuntu).
+1.  **Base de Datos**: Importa el archivo `/database/db.sql` en tu servidor MySQL. Este creará la base de datos `task_master` y el usuario.
+2.  **Servidor Web**: Aloja la carpeta del proyecto en tu servidor local.
 3.  **Acceso**: Entra a través de `index.php` para iniciar el flujo de la aplicación.
 
 ---
